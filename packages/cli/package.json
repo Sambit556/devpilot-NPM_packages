@@ -1,13 +1,18 @@
 {
   "name": "@devspilot/cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "DevsPilot CLI — The Developer Operating System",
   "type": "module",
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sambit556/devpilot-NPM_packages.git",
+    "directory": "packages/cli"
+  },
   "bin": {
-    "devspilot": "./dist/bin.js"
+    "devspilot": "dist/bin.js"
   },
   "exports": {
     ".": {

@@ -34,8 +34,7 @@ jobs:
 
       - name: Publish packages
         run: |
-          for pkg in packages/*; do
-            if [ -f "$pkg/package.json" ]; then
-              (cd "$pkg" && npm publish --access public)
-            fi
+          for pkg in shared core cli; do
+            dir="packages/$pkg"
+            (cd "$dir" && pnpm pack && npm publish "$(ls devspilot-*.tgz)" --access public)
           done
