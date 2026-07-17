@@ -1,8 +1,9 @@
 {
   "name": "@devspilot/cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "DevsPilot CLI — The Developer Operating System",
   "type": "module",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
