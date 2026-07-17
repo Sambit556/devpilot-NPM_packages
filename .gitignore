@@ -40,3 +40,4 @@ logs/
 *.tgz
 .changeset/*.md
 !.changeset/config.json
+handover.md/
