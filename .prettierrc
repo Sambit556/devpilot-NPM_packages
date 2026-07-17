@@ -9,4 +9,5 @@
   "arrowParens": "always",
   "endOfLine": "lf",
   "quoteProps": "as-needed"
+  
 }
