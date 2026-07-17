@@ -12,8 +12,8 @@
 import { readFileSync, existsSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { resolve, join, extname } from 'node:path';
 import crypto from 'node:crypto';
-import { ENV_FILES, redactEnvValue, isSecretKey, isSecretValue } from '@devspilot/shared';
-import type { ResolvedConfig, EnvState, EnvConflict } from '@devspilot/shared';
+import { ENV_FILES, isSecretKey, isSecretValue } from '@devspilot/shared';
+import type { ResolvedConfig, EnvConflict } from '@devspilot/shared';
 import { EventBus } from '../bus/EventBus.js';
 import { StateManager } from '../state/StateManager.js';
 import { createLogger } from '../utils/logger.js';
@@ -134,14 +134,14 @@ export class EnvManager {
     const conflicts = this.detectConflicts(fileValues);
 
     // 4. Scan source code for missing and unused variables (basic AST / grep scanning)
-    const { missingVars, unusedVars } = await this.analyzeSourceVariables(mergedEnv);
+    const { unusedVars } = await this.analyzeSourceVariables(mergedEnv);
 
     // 5. Check for raw secrets in env files
     this.checkSecrets(mergedEnv);
 
     // 6. Update State
     const totalLoadedVars = Object.keys(mergedEnv).length;
-    this.stateManager.update((state) => ({
+    this.stateManager.update((_state) => ({
       env: {
         loaded: true,
         files: loadedFiles,

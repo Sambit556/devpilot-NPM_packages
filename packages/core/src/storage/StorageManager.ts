@@ -6,7 +6,7 @@
  */
 
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { resolve, join, dirname } from 'node:path';
+import { join, dirname } from 'node:path';
 import { getHomeDir } from '@devspilot/shared';
 import { createLogger } from '../utils/logger.js';
 import type { Logger } from '../utils/logger.js';
@@ -17,12 +17,10 @@ export interface StorageManagerOptions {
 
 export class StorageManager {
   private readonly log: Logger;
-  private readonly projectRoot: string;
   private readonly storePath: string;
   private data: Record<string, any> = {};
 
-  constructor(options: StorageManagerOptions) {
-    this.projectRoot = resolve(options.projectRoot);
+  constructor(_options: StorageManagerOptions) {
     this.log = createLogger({ name: 'StorageManager' });
 
     // Persistent storage location: ~/.DevsPilot/store.json

@@ -27,13 +27,11 @@ export interface GitManagerOptions {
 
 export class GitManager {
   private readonly log: Logger;
-  private readonly eventBus: EventBus;
   private readonly stateManager: StateManager;
   private readonly projectRoot: string;
   private isGitAvailable = false;
 
   constructor(options: GitManagerOptions) {
-    this.eventBus = options.eventBus;
     this.stateManager = options.stateManager;
     this.projectRoot = resolve(options.projectRoot);
     this.log = createLogger({ name: 'GitManager' });

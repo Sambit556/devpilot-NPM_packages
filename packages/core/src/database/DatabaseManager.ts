@@ -23,12 +23,10 @@ export interface DatabaseManagerOptions {
 
 export class DatabaseManager {
   private readonly log: Logger;
-  private readonly eventBus: EventBus;
   private readonly stateManager: StateManager;
   private readonly projectRoot: string;
 
   constructor(options: DatabaseManagerOptions) {
-    this.eventBus = options.eventBus;
     this.stateManager = options.stateManager;
     this.projectRoot = resolve(options.projectRoot);
     this.log = createLogger({ name: 'DatabaseManager' });
@@ -37,7 +35,7 @@ export class DatabaseManager {
   /**
    * Scan env files and project structures to identify, verify database/cache layers.
    */
-  async scan(config: ResolvedConfig): Promise<void> {
+  async scan(_config: ResolvedConfig): Promise<void> {
     this.log.info('Scanning for database configurations...');
 
     const env = process.env;
@@ -117,7 +115,7 @@ export class DatabaseManager {
 
     const detected = instances.length > 0;
 
-    this.stateManager.update((state) => ({
+    this.stateManager.update((_state) => ({
       database: {
         detected,
         instances,
@@ -137,7 +135,7 @@ export class DatabaseManager {
     return null;
   }
 
-  private async testConnection(host: string, port: number | null, dialect: string): Promise<boolean> {
+  private async testConnection(host: string, port: number | null, _dialect: string): Promise<boolean> {
     if (!port) return false;
     return new Promise((resolve) => {
       const socket = createConnection({ host, port, timeout: 1500 });
@@ -159,7 +157,7 @@ export class DatabaseManager {
     });
   }
 
-  private detectMigrations(dialect: string): { migrationsFound: boolean; framework: string | null } {
+  private detectMigrations(_dialect: string): { migrationsFound: boolean; framework: string | null } {
     // 1. Prisma checks
     if (existsSync(join(this.projectRoot, 'prisma/schema.prisma'))) {
       const migrationDir = join(this.projectRoot, 'prisma/migrations');

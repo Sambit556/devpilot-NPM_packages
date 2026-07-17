@@ -141,7 +141,7 @@ export class TaskScheduler {
     return cronParts.every((matched) => matched);
   }
 
-  private evaluateField(field: string, current: number, min: number, max: number): boolean {
+  private evaluateField(field: string, current: number, _min: number, _max: number): boolean {
     if (field === '*') return true;
 
     // Step pattern: */5

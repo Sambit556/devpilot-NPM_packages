@@ -20,7 +20,6 @@ import { resolve } from 'node:path';
 import type { ResolvedServiceConfig, ServiceState, ServiceStatus } from '@devspilot/shared';
 import {
   DEFAULT_GRACEFUL_SHUTDOWN_TIMEOUT_MS,
-  DEFAULT_KILL_TIMEOUT_MS,
   isWindows,
 } from '@devspilot/shared';
 import { EventBus } from '../bus/EventBus.js';

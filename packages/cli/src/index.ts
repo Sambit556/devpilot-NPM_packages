@@ -13,7 +13,7 @@ import pc from 'picocolors';
 import Table from 'cli-table3';
 import ora from 'ora';
 import { DevsPilotEngine } from '@devspilot/core';
-import type { EngineContext, LogEntry } from '@devspilot/core';
+
 import { formatBytes, formatDuration, formatPercent } from '@devspilot/shared';
 
 // ---------------------------------------------------------------------------
@@ -143,7 +143,6 @@ async function handleStatus(projectRoot: string, flags: any): Promise<void> {
   });
 
   for (const [name, svc] of Object.entries(state.services)) {
-    const healthState = state.health.services[name];
     const perfState = state.performance.services[name];
 
     const statusText = svc.status === 'running' || svc.status === 'healthy'
@@ -220,7 +219,7 @@ async function handleLogs(projectRoot: string, flags: any, targetService?: strin
 
 async function handleRestart(projectRoot: string, flags: any, targetService?: string): Promise<void> {
   const engine = new DevsPilotEngine({ projectRoot, configPath: flags.config });
-  const ctx = await engine.start();
+  await engine.start();
 
   const spinner = ora(targetService ? `Restarting ${targetService}...` : 'Restarting all services...').start();
   try {

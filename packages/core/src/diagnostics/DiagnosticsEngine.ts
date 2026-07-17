@@ -10,10 +10,10 @@
  * - Validates port states and environment setups
  */
 
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { createConnection } from 'node:net';
-import type { ResolvedConfig, DiagnosticCheck, DiagnosticSeverity, DevsPilotState } from '@devspilot/shared';
+import type { ResolvedConfig, DiagnosticCheck, DevsPilotState } from '@devspilot/shared';
 import { EventBus } from '../bus/EventBus.js';
 import { StateManager } from '../state/StateManager.js';
 import { createLogger } from '../utils/logger.js';
@@ -27,12 +27,10 @@ export interface DiagnosticsEngineOptions {
 
 export class DiagnosticsEngine {
   private readonly log: Logger;
-  private readonly eventBus: EventBus;
   private readonly stateManager: StateManager;
   private readonly projectRoot: string;
 
   constructor(options: DiagnosticsEngineOptions) {
-    this.eventBus = options.eventBus;
     this.stateManager = options.stateManager;
     this.projectRoot = resolve(options.projectRoot);
     this.log = createLogger({ name: 'DiagnosticsEngine' });
@@ -84,7 +82,7 @@ export class DiagnosticsEngine {
     return { checks, score };
   }
 
-  private checkNodeVersion(state: DevsPilotState): DiagnosticCheck {
+  private checkNodeVersion(_state: DevsPilotState): DiagnosticCheck {
     const nodeVer = process.version;
     // Loose engines match (typically >=18.0.0)
     const matches = true;
@@ -177,7 +175,6 @@ export class DiagnosticsEngine {
 
   private async checkCircularDependencies(): Promise<DiagnosticCheck> {
     // Basic dependency cycles scan of direct imports
-    let cyclesFound = 0;
     try {
       const srcDir = join(this.projectRoot, 'src');
       if (existsSync(srcDir)) {

@@ -239,7 +239,7 @@ export class StateManager {
   // Private
   // -------------------------------------------------------------------------
 
-  private notifySubscribers(prevState: DevsPilotState): void {
+  private notifySubscribers(_prevState: DevsPilotState): void {
     for (const sub of this.subscriptions.values()) {
       try {
         const newValue = sub.selector(this.state);

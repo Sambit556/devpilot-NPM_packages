@@ -49,7 +49,7 @@ export class PluginLoader {
   /**
    * Scan, validate, and load plugins based on the active project configuration.
    */
-  async loadPlugins(config: ResolvedConfig): Promise<void> {
+  async loadPlugins(_config: ResolvedConfig): Promise<void> {
     this.log.info('Discovering DevsPilot plugins...');
 
     // 1. Discover plugins from node_modules
@@ -310,8 +310,7 @@ export class PluginLoader {
       events: eventAPI,
       state: stateAPI,
       config: {
-        get: <T = unknown>(key: string, defaultValue?: T): T => {
-          const config = this.stateManager.getState().config;
+        get: <T = unknown>(_key: string, defaultValue?: T): T => {
           return defaultValue as T; // Mock placeholder
         },
       },

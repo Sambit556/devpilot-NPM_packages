@@ -10,9 +10,9 @@
  */
 
 import { execSync, spawn } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
-import type { ResolvedConfig, DockerState, ContainerState } from '@devspilot/shared';
+import type { ResolvedConfig, ContainerState } from '@devspilot/shared';
 import { EventBus } from '../bus/EventBus.js';
 import { StateManager } from '../state/StateManager.js';
 import { createLogger } from '../utils/logger.js';

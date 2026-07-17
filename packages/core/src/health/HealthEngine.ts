@@ -12,7 +12,6 @@
  */
 
 import { createConnection } from 'node:net';
-import { existsSync, accessSync, constants } from 'node:fs';
 import type { ResolvedConfig, ResolvedServiceConfig, HealthStatus } from '@devspilot/shared';
 import {
   DEFAULT_HEALTH_INTERVAL_MS,
@@ -45,13 +44,11 @@ export class HealthEngine {
   private readonly log: Logger;
   private readonly eventBus: EventBus;
   private readonly stateManager: StateManager;
-  private readonly processManager: ProcessManager;
   private readonly activeChecks = new Map<string, ActiveHealthCheck>();
 
   constructor(options: HealthEngineOptions) {
     this.eventBus = options.eventBus;
     this.stateManager = options.stateManager;
-    this.processManager = options.processManager;
     this.log = createLogger({ name: 'HealthEngine' });
   }
 
@@ -198,7 +195,7 @@ export class HealthEngine {
     active: ActiveHealthCheck,
     status: HealthStatus,
     responseMs: number,
-    message = '',
+    _message = '',
   ): void {
     const prevStatus = active.status;
     active.status = status;
@@ -298,15 +295,6 @@ export class HealthEngine {
   private probeProcess(pid: number): boolean {
     try {
       process.kill(pid, 0); // Send 0 signal to test PID existence
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
-  private probeFile(filePath: string): boolean {
-    try {
-      accessSync(filePath, constants.R_OK | constants.W_OK);
       return true;
     } catch {
       return false;

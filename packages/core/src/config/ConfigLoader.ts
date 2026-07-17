@@ -18,7 +18,7 @@ import { parse as parseYaml } from 'yaml';
 import { CONFIG_FILES, PACKAGE_JSON_CONFIG_KEY, MAX_CONFIG_SIZE_BYTES } from '@devspilot/shared';
 import type { DevsPilotConfig, ResolvedConfig, ResolvedServiceConfig } from '@devspilot/shared';
 import { DevsPilotConfigSchema } from './ConfigSchema.js';
-import { ConfigNotFoundError, ConfigParseError, ConfigValidationError } from '../utils/errors.js';
+import { ConfigParseError, ConfigValidationError } from '../utils/errors.js';
 import { createLogger } from '../utils/logger.js';
 import type { Logger } from '../utils/logger.js';
 

@@ -13,13 +13,12 @@ import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { resolve, join, extname } from 'node:path';
 import tls from 'node:tls';
 import http from 'node:http';
-import https from 'node:https';
+// https import removed (unused)
 import {
   SECRET_KEY_PATTERNS,
   SECRET_VALUE_PATTERNS,
-  isValidPort,
 } from '@devspilot/shared';
-import type { ResolvedConfig, DiagnosticCheck, DiagnosticSeverity } from '@devspilot/shared';
+import type { ResolvedConfig } from '@devspilot/shared';
 import { EventBus } from '../bus/EventBus.js';
 import { StateManager } from '../state/StateManager.js';
 import { createLogger } from '../utils/logger.js';

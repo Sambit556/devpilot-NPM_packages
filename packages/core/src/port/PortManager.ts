@@ -10,7 +10,6 @@ import { execSync } from 'node:child_process';
 import { isWindows, isValidPort } from '@devspilot/shared';
 import type { PortState } from '@devspilot/shared';
 import { EventBus } from '../bus/EventBus.js';
-import { createLogger } from '../utils/logger.js';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -27,7 +26,6 @@ export interface PortConflictInfo {
 // ---------------------------------------------------------------------------
 
 export class PortManager {
-  private readonly log = createLogger({ name: 'PortManager' });
   private readonly eventBus: EventBus;
   private readonly allocations = new Map<number, string>();
 

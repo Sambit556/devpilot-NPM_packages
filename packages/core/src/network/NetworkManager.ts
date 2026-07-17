@@ -10,7 +10,7 @@
 
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { resolve, join, extname } from 'node:path';
-import type { ResolvedConfig, NetworkState } from '@devspilot/shared';
+import type { ResolvedConfig } from '@devspilot/shared';
 import { EventBus } from '../bus/EventBus.js';
 import { StateManager } from '../state/StateManager.js';
 import { createLogger } from '../utils/logger.js';
@@ -24,12 +24,10 @@ export interface NetworkManagerOptions {
 
 export class NetworkManager {
   private readonly log: Logger;
-  private readonly eventBus: EventBus;
   private readonly stateManager: StateManager;
   private readonly projectRoot: string;
 
   constructor(options: NetworkManagerOptions) {
-    this.eventBus = options.eventBus;
     this.stateManager = options.stateManager;
     this.projectRoot = resolve(options.projectRoot);
     this.log = createLogger({ name: 'NetworkManager' });
@@ -38,7 +36,7 @@ export class NetworkManager {
   /**
    * Run discovery and populate network status state.
    */
-  async discover(config: ResolvedConfig): Promise<void> {
+  async discover(_config: ResolvedConfig): Promise<void> {
     this.log.info('Running network discovery scan...');
 
     let websockets = false;
@@ -77,7 +75,7 @@ export class NetworkManager {
     }
 
     // 2. Scan for proto files (gRPC M5)
-    this.scanForProtos(this.projectRoot, (protoFile) => {
+    this.scanForProtos(this.projectRoot, (_protoFile) => {
       grpcEnabled = true;
     });
 
@@ -88,7 +86,7 @@ export class NetworkManager {
       }
     });
 
-    this.stateManager.update((state) => ({
+    this.stateManager.update((_state) => ({
       network: {
         apis,
         websockets,

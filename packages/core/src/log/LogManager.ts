@@ -9,7 +9,7 @@ import { appendFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import os from 'node:os';
 import type { EventBus } from '../bus/EventBus.js';
-import { LOG_COLORS, redactLogLine, padRight, truncate, MAX_LOG_LINE_LENGTH } from '@devspilot/shared';
+import { LOG_COLORS, redactLogLine, truncate, MAX_LOG_LINE_LENGTH } from '@devspilot/shared';
 import type { LogLevel } from '@devspilot/shared';
 
 // ---------------------------------------------------------------------------
