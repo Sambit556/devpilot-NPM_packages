@@ -1,6 +1,6 @@
 {
   "name": "@devspilot/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "DevsPilot core engine — process management, detection, health, and orchestration",
   "type": "module",
   "publishConfig": {
