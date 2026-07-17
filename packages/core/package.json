@@ -1,9 +1,10 @@
 {
   "name": "@devspilot/core",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "DevsPilot core engine — process management, detection, health, and orchestration",
   "type": "module",
   "license": "MIT",
+  "author": "sambit",
   "publishConfig": {
     "access": "public"
   },

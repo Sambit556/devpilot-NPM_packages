@@ -1,9 +1,10 @@
 {
   "name": "@devspilot/shared",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Shared types, constants, and utilities for DevsPilot",
   "type": "module",
   "license": "MIT",
+  "author": "sambit",
   "publishConfig": {
     "access": "public"
   },

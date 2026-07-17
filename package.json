@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "DevsPilot — The Developer Operating System",
-  "author": "DevsPilot Contributors",
+  "author": "sambit",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0",
