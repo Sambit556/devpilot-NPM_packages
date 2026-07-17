@@ -3,32 +3,43 @@
 > **The Developer Operating System** — One command to simplify your entire local development experience. Zero configuration. Everything just works.
 
 ```bash
-npx DevsPilot up
+npm install -g @devspilot/cli
+devspilot up
 ```
 
 ---
 
 ## ⚡ Quick Start
 
-### 1. Run in any Node.js project
+### 1. Install
+DevsPilot is published as a scoped package, so install the CLI globally:
+```bash
+npm install -g @devspilot/cli
+```
+Or run it once without installing (scoped packages need the `-p` flag since the bin name `devspilot` differs from the package's unscoped name `cli`):
+```bash
+npx -p @devspilot/cli devspilot up
+```
+
+### 2. Run in any Node.js project
 You can launch DevsPilot immediately in any existing backend, frontend, or monorepo project:
 ```bash
-npx DevsPilot up
+devspilot up
 ```
 DevsPilot will auto-detect your project type, package manager, frameworks, Docker setups, and start everything in dependency-ordered processes with aggregated log streaming and smart change watching.
 
-### 2. Available Commands
+### 3. Available Commands
 ```bash
-DevsPilot up              # Start all dev services
-DevsPilot status          # List status, port, memory, and CPU metrics of running services
-DevsPilot logs [service]  # Tail and aggregate logs from services
-DevsPilot restart [svc]   # Restart one or all services
-DevsPilot doctor          # Run diagnostics checks
-DevsPilot health          # View liveness/readiness probe status
-DevsPilot env             # Audits environment files and variables
-DevsPilot ports           # Inspect mapped port configurations
-DevsPilot config          # Dump the resolved JSON configuration profile
-DevsPilot version         # Show version information
+devspilot up              # Start all dev services
+devspilot status          # List status, port, memory, and CPU metrics of running services
+devspilot logs [service]  # Tail and aggregate logs from services
+devspilot restart [svc]   # Restart one or all services
+devspilot doctor          # Run diagnostics checks
+devspilot health          # View liveness/readiness probe status
+devspilot env             # Audits environment files and variables
+devspilot ports           # Inspect mapped port configurations
+devspilot config          # Dump the resolved JSON configuration profile
+devspilot version         # Show version information
 ```
 
 ---
@@ -69,4 +80,4 @@ services:
 ---
 
 ## 📄 License
-Apache-2.0 License.
+MIT License.
